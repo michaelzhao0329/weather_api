@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Weather Lookup</title>
+    <link rel="stylesheet" type="text/css" href="stylesheets/styles.css">
+    <!--
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/scripts/translate.js"></script>
+  </head>
+    <script>
+      function setLanguage(lang) {
+        var translate = new Translate();
+        //var currentLng = 'ch';//'fr'
+        var attributeName = 'data-tag';
+        currentLng = lang;
+        translate.init(attributeName, currentLng);
+        translate.process();
+        document.getElementById("currentLngId").value = currentLng ;
+      }
+      function load(){
+        var translate = new Translate();
+        var currentLng = 'ch';//'fr'
+        var attributeName = 'data-tag';
+        translate.init(attributeName, currentLng);
+        translate.process();
+        document.getElementById("currentLngId").value = currentLng ;
+
+       }
+     </script>
+<body onload="load()">
+  <div class="container">
+    <a href="#" onclick="setLanguage('en')" action="/setLng" name="Language" value="en" method="POST">  English</a>
+    <a href="#" onclick="setLanguage('ch')" action="/setLng" name="Language" value="ch" method="POST">  Chinese</a>
+
+    <form class="" action="/" method="POST">
+      <label data-tag="head1"> </label>
+      <h3><%=kindOfDay %>!</h3>
+
+      <label data-tag="city" for="city" >City Name:</label>
+      <input id="currentCity" type="text" name="city" placeholder="city" value="" >
+      <button class="btn btn-primary" type="submit" name="submit" data-tag="go">go</button>
+      <input type="radio" id="Celsius" name="units" value="C"  checked="checked" >
+      <label for="Celsius">C</label>
+      <input type="radio" id="Fahrenheit" name="units" value="F">
+      <label for="Fahrenheit">F</label>
+      <input id="currentLngId" type="hidden" name="currentLng" value ="">
+    </form>
+    <p><img src="http://openweathermap.org/img/wn/<%=weatherIcon%>@2x.png" align='left' <br></p>
+     <ul>
+       <% for (var i = 0;i < addedItems.length;i++ ){ %>
+          <h><%-addedItems[i] %> <br> </h>
+       <% } %>
+     </ul>
+</div>
+
+<div class="footer">
+  <p class="mt-5 mb-3 text-muted">&copy;2020 My first App！</p>
+</div>
+</body>
+</html>
