@@ -13,7 +13,6 @@
     <script>
       function setLanguage(lang) {
         var translate = new Translate();
-        //var currentLng = 'ch';//'fr'
         var attributeName = 'data-tag';
         currentLng = lang;
         translate.init(attributeName, currentLng);
@@ -22,7 +21,7 @@
       }
       function load(){
         var translate = new Translate();
-        var currentLng = 'ch';//'fr'
+        var currentLng = 'ch';
         var attributeName = 'data-tag';
         translate.init(attributeName, currentLng);
         translate.process();
@@ -31,6 +30,7 @@
        }
      </script>
 <body onload="load()">
+
   <div class="container">
     <a href="#" onclick="setLanguage('en')" action="/setLng" name="Language" value="en" method="POST">  English</a>
     <a href="#" onclick="setLanguage('ch')" action="/setLng" name="Language" value="ch" method="POST">  Chinese</a>
@@ -40,7 +40,7 @@
       <h3><%=kindOfDay %>!</h3>
 
       <label data-tag="city" for="city" >City Name:</label>
-      <input id="currentCity" type="text" name="city" placeholder="city" value="" >
+      <input id="currentCity" type="text" name="city" placeholder="city" value="" autofocus="on">
       <button class="btn btn-primary" type="submit" name="submit" data-tag="go">go</button>
       <input type="radio" id="Celsius" name="units" value="C"  checked="checked" >
       <label for="Celsius">C</label>
